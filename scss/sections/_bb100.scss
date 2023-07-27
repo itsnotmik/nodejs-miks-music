@@ -1,0 +1,135 @@
+
+.bb100-section {
+    padding-top: 10rem;
+    background: linear-gradient(to bottom,
+        $black 0%,
+        #{fade-out($black, 0.1)} 75%,
+        #{fade-out($black, 0.2)} 100%);
+
+    
+
+    .container-fade {
+        -webkit-mask: 
+            linear-gradient(to left, transparent 1%, black 3%, black 97%, transparent 99%);
+        mask:
+            linear-gradient(to left, transparent 1%, black 3%, black 97%, transparent 99%);
+    }
+
+    .container-pad {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .container-bb100 {
+        overflow-x: scroll;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .container-bb100::-webkit-scrollbar {
+        width: 6px;
+        background-color: transparent;
+        padding-top: 2px;
+    }
+
+    .container-bb100::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+      
+    .container-bb100::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: transparent;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    
+    .container-bb100::-webkit-scrollbar-button:horizontal:start:increment, 
+    .container-bb100::-webkit-scrollbar-button:horizontal:end:decrement {
+        display: none;
+    }
+
+    .container-cards {
+        padding-left: 35px;
+    }
+
+    .card-body {
+        min-height: 550px;
+        min-width: 400px;
+        margin-right: 10px;
+        margin-left: 4px;
+        background: linear-gradient(to bottom,
+                    black 40%,
+                    #{fade-out(rgb(34, 34, 34), 0.1)} 75%,
+                    #{fade-out(black, 0.2)} 100%);
+        position: relative;
+    }
+
+    .card-title {
+        font-size: 30px;
+        font-weight: bold;
+        padding-top: 10px;
+        //white text
+        //make sure padding is right
+    }
+
+    .card-artist {
+        font-size: 30px;
+        padding-top: 10px;
+    }
+
+    h1 {
+        font-family: $font-family-special;
+        font-size: 2.5rem;
+        font-weight: bold;
+        line-height: 2.5rem;
+        letter-spacing: 0.5rem;
+        background: linear-gradient(fade-out($white, 0), fade-out($white, .3));
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    p {
+        font-family: $font-family-special;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        letter-spacing: 0.3rem;
+        background: linear-gradient(fade-out($white, 0), fade-out($white, .7));
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .in_middle {
+        position: absolute;
+        bottom: 75px;
+        left:50%;
+        margin-right: -50%;
+        transform: translateX(-50%);
+        width: 380px;
+        height: 380px;
+    }
+
+    .near_bottom {
+        position: absolute;
+        bottom: 10px;
+        left:50%;
+        margin-right: -50%;
+        transform: translateX(-50%);
+    }
+
+    .on_bottom {
+        position: absolute;
+        bottom: 0;
+        left:50%;
+        margin-right: -50%;
+        transform: translateX(-50%);
+        width: 380px;
+        height: 380px;
+        padding-bottom: 10px;
+    }
+
+    .container-min-max {
+        min-width: 40px;
+        min-height: none;
+    }
+
+}

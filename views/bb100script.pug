@@ -1,0 +1,18 @@
+script.
+    async function loadBB100() {
+
+        var counter = 1;
+
+        fetch('https://bb100.azurewebsites.net/').then(
+            resp => resp.json() // this returns a promise
+        ).then(repos => {
+            for (const repo of repos) {
+                document.getElementById('CARD'+counter+'title').innerHTML = repo.name;
+                document.getElementById('CARD'+counter+'artist').innerHTML = 'by ' + repo.artist;
+                document.getElementById('CARD'+counter+'img').src = repo.album;
+                counter++;
+            }
+        }).catch(ex => {
+            console.log(ex);
+        })
+    }
