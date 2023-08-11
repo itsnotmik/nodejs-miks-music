@@ -60,7 +60,7 @@ script.
 
         searchbar.value = songFillIn;
 
-        fetch('http://mikmusicapi.azurewebsites.net/api/song/id/' + songID).then(
+        fetch('https://mikmusicapi.azurewebsites.net/api/song/id/' + songID).then(
             resp => resp.json()
         ).then(repos => {
             for (const repo of repos) {
