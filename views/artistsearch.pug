@@ -1,0 +1,49 @@
+script.  
+    function searchByName() {
+        event.preventDefault();
+
+        document.getElementById('song_search_text').innerHTML = 'Song Recommendations';
+
+        const reccontainer = document.getElementById('searchcards');
+
+        var inputName = document.getElementById('name-search-text');
+        var inputArtist = document.getElementById('artist-search-text');
+
+        var nameForURL = 'track=' + encodeURIComponent(inputName.value);
+        var artistForURL = '&artist=' + encodeURIComponent(inputArtist.value);
+
+        var counter = 1;
+
+        console.log('https://mikmusicapi.azurewebsites.net/api/song/search?' + nameForURL + artistForURL);
+        
+        fetch('https://mikmusicapi.azurewebsites.net/api/song/search?' + nameForURL + artistForURL).then(
+            resp => resp.json() // this returns a promise
+        ).then(repos => {
+            for (const repo of repos) {
+                if (counter < 11) {
+                    reccontainer.style.display = 'block';
+
+                    recartists = repo.artists.replace(/[^a-z,0-9 ]/ig, "");
+                    recartistsshort = recartists.substring(0, 12);
+                    if (recartistsshort != recartists){
+                        recartists = recartistsshort + '...';                               
+                    }
+
+                    recname = repo.name.substring(0, 30);
+                    if (recname != repo.name){
+                        recname = recname + '...';
+                    }
+
+                    document.getElementById('searchCARD'+counter+'title').innerHTML = recname;
+                    document.getElementById('searchCARD'+counter+'artist').innerHTML = 'by ' + recartists;
+                    document.getElementById('searchCARD'+counter+'img').src = repo['album art'];
+                    counter++;
+                }
+                else { break; }
+            }
+            document.getElementById('song_search_text').innerHTML = "Song Recommendations";
+        }).catch(ex => {
+            document.getElementById('song_search_text').innerHTML = "Failed to Song Recommendations";
+            console.log(ex);
+        })
+    };

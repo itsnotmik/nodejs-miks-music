@@ -1,5 +1,6 @@
 script.
     async function loadBB100() {
+        event.preventDefault();
 
         var counter = 1;
         document.getElementById('bb100title').innerHTML = "Loading Billboard Top 100"
@@ -8,15 +9,15 @@ script.
             resp => resp.json() // this returns a promise
         ).then(repos => {
             for (const repo of repos) {
+                //console.log(repos);
                 document.getElementById('CARD'+counter+'title').innerHTML = repo.name;
                 document.getElementById('CARD'+counter+'artist').innerHTML = 'by ' + repo.artist;
                 document.getElementById('CARD'+counter+'img').src = repo.album;
-                if (counter == 10) {
-                    document.getElementById('bb100title').innerHTML = "Billboard Top 100";
-                }
                 counter++;
             }
+            document.getElementById('bb100title').innerHTML = "Billboard Top 100";
         }).catch(ex => {
+            document.getElementById('bb100title').innerHTML = "Failed to Load Billboard Top 100";
             console.log(ex);
         })
     }

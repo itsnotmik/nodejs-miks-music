@@ -1,5 +1,4 @@
-
-.bb100-section {
+.search-section {
     padding-top: 10rem;
     background: linear-gradient(to bottom,
         $black 0%,
@@ -20,31 +19,31 @@
         padding-bottom: 10px;
     }
 
-    .container-bb100 {
+    .container-rec {
         overflow-x: scroll;
         margin-right: 10px;
         margin-left: 10px;
     }
 
-    .container-bb100::-webkit-scrollbar {
+    .container-rec::-webkit-scrollbar {
         width: 6px;
         background-color: transparent;
         padding-top: 2px;
     }
 
-    .container-bb100::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.3);
+    .container-rec::-webkit-scrollbar-thumb {
+        background-color: rgba(116, 116, 116, 0.2);
       }
       
-    .container-bb100::-webkit-scrollbar-track {
+    .container-rec::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         background-color: transparent;
         margin-left: 15px;
         margin-right: 15px;
     }
     
-    .container-bb100::-webkit-scrollbar-button:horizontal:start:increment, 
-    .container-bb100::-webkit-scrollbar-button:horizontal:end:decrement {
+    .container-rec::-webkit-scrollbar-button:horizontal:start:increment, 
+    .container-rec::-webkit-scrollbar-button:horizontal:end:decrement {
         display: none;
     }
 
@@ -88,7 +87,7 @@
         background-clip: text;
         text-decoration: underline #ffffff54
     }
-
+    
     h2 {
         max-width: 50rem;
         font-size: 1.25rem;
@@ -105,6 +104,14 @@
         padding-bottom: 5px;
     }
 
+    .results-text {
+        font-size: 1rem;
+        text-align: start;
+        margin-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
     .on_bottom {
         position: absolute;
         bottom: 0;
@@ -118,11 +125,27 @@
 
     .container-min-max {
         min-width: 40px;
-        min-height: none;
+        min-height: 40px;
     }
 
     .spacer-bot {
         padding-bottom: 15px;
     }
+    
+    .spacer-right{
+        padding-right: 5px;
+    }
 
+    .openonclick {
+        display: none;
+    }
+
+    .results-spacing {
+        margin-left: 135px;
+    }
+
+    .card-results {
+        outline: none;
+    }
+    
 }

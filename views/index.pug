@@ -8,12 +8,14 @@ html(lang='en')
         meta(name='description', content='')
         meta(name='author', content='')
 
-        title Mik's Music System
+        title Mik's Music
 
-        link(rel='icon', type='image/x-icon', href='/images/favicon.ico')
+        link(rel='icon', type='image/x-icon', href='/images/favicon.png')
 
         // Font Awesome icons (free version)
         script(src='https://use.fontawesome.com/releases/v6.3.0/js/all.js', crossorigin='anonymous')
+        script(src='https://code.jquery.com/jquery-3.7.0.min.js')
+        script(src="https://unpkg.com/rxjs@7.8.1/dist/bundles/rxjs.umd.js")
 
         // Google fonts
         link(href='https://fonts.googleapis.com/css?family=Varela+Round', rel='stylesheet')
@@ -21,7 +23,7 @@ html(lang='en')
 
         // Core theme CSS (includes Bootstrap)
         link(href='stylesheets/styles.css', rel='stylesheet')
-
+        
         // Billboard Top 100 API
         include bb100script
 
@@ -39,9 +41,13 @@ html(lang='en')
                         li.nav-item
                             a.nav-link(href='#bb100') Billboard Top 100
                         li.nav-item
-                            a.nav-link(href='#projects') Projects
+                            a.nav-link(href='#recommendations') Song Recommendations
                         li.nav-item
-                            a.nav-link(href='#signup') Contact
+                            a.nav-link(href='#aboutme') Information
+                        li.nav-item
+                            a.nav-link(href='#contact') Contact
+                        li.nav-item
+                            a.nav-link(href='https://github.com/itsnotmik') Github
 
         // Masthead
         header.masthead
@@ -49,17 +55,18 @@ html(lang='en')
                 .d-flex.justify-content-center
                     .text-center
                         h1.mx-auto.my-0.text-uppercase Mik's Music
-                        h2.text-white-50.mx-auto.mt-2.mb-5 Music Discovery & Recommendation System
-                        a.btn.btn-primary(href='#bb100') Billboard Top 100
-                        a.btn.btn-primary(href='#recommendations') Music Recommendations
+                        h2.text-white-50.mx-auto.mt-2.mb-5 Music Discovery & Recommendations
+                        a.btn.btn-secondary.spacer-right(href='#bb100') Billboard Top 100
+                        a.btn.btn-secondary(href='#recommendations') Music Recommendations
 
-        // About
-
+        // BB100
         section#bb100.bb100-section.text-center
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8
-                        h1.text-white.mb-4#bb100title Billboard Top 100
+                        h1.text-white.mb-4.spacer-bot#bb100title Billboard Top 100
+                        h2.text-white-50.mx-auto.mt-2.mb-5 Check out the Top 10 songs from the Billboard Hot 100! <br>
+                                                            | Please give the cards time to load, the website is running on Azure free tier!
             .container-fade
                 .container-bb100
                     .container-fluid.py-2
@@ -106,29 +113,139 @@ html(lang='en')
                                 img.img-fluid.on_bottom#CARD10img(src='', alt='...')
                             .container-min-max
 
-        section#about.about-section.text-center
+        //Recommendations
+        section#recommendations.recommendations-section.text-center 
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5.justify-content-center
                     .col-lg-8
-                        h2.text-white.mb-4 Built with Bootstrap 5
-                        p.text-white-50
-                            | Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now, simply download the template on 
-                            a(href='https://startbootstrap.com/theme/grayscale/') the preview page.
-                            | The theme is open source, and you can use it for any purpose, personal or commercial.
-                img.img-fluid(src='/images/ipad.png', alt='...')
+                        h1.text-white.mb-4.spacer-bot#song_rec_text Song Recommendations
+                        h2.text-white-50.mx-auto.mt-2.mb-5 Select a song from the dropdown to get recommendations! <br> Please give the dropdown time to load, 
+                                                            | everything is running on Azure free tier!
+                        p.text-white
+                        .input-group.mb-3
+                            .btn-group.spacer-right
+                                button.btn.btn-secondary#testbtn(type='button' aria-expanded='false' onclick='keyPressCallback()')
+                                    | Search
+                            input.form-control#song-search-text(type='text' placeholder='Input Song Name..')
+                        #results-card-container.card.results-spacing.openonclick
+                        template(data-results='')
+                            .results-text(data-id='') 
+            .container-fade.openonclick#reccards
+                .container-rec
+                    .container-fluid.py-2
+                        .container-cards.flex-nowrap.flex-row.d-flex
+                            .card.card-body#recCARD1
+                                h1.card-title#recCARD1title Number 1 Song
+                                p.card-artist#recCARD1artist Artist1
+                                img.img-fluid.on_bottom#recCARD1img(src='', alt='...')
+                            .card.card-body#recCARD2
+                                h1.card-title#recCARD2title Number 2 Song
+                                p.card-artist#recCARD2artist Artist2
+                                img.img-fluid.on_bottom#recCARD2img(src='', alt='...')
+                            .card.card-body#recCARD3
+                                h1.card-title#recCARD3title Number 3 Song
+                                p.card-artist#recCARD3artist Artist3
+                                img.img-fluid.on_bottom#recCARD3img(src='', alt='...')
+                            .card.card-body#recCARD4
+                                h1.card-title#recCARD4title Number 4 Song
+                                p.card-artist#recCARD4artist Artist4
+                                img.img-fluid.on_bottom#recCARD4img(src='', alt='...')
+                            .card.card-body#recCARD5
+                                h1.card-title#recCARD5title Number 5 Song
+                                p.card-artist#recCARD5artist Artist5
+                                img.img-fluid.on_bottom#recCARD5img(src='', alt='...')
+                            .card.card-body#recCARD6
+                                h1.card-title#recCARD6title Number 6 Song
+                                p.card-artist#recCARD6artist Artist6
+                                img.img-fluid.on_bottom#recCARD6img(src='', alt='...')
+                            .card.card-body#recCARD7
+                                h1.card-title#recCARD7title Number 7 Song
+                                p.card-artist#recCARD7artist Artist7
+                                img.img-fluid.on_bottom#recCARD7img(src='', alt='...')
+                            .card.card-body#recCARD8
+                                h1.card-title#recCARD8title Number 8 Song
+                                p.card-artist#recCARD8artist Artist8
+                                img.img-fluid.on_bottom#recCARD8img(src='', alt='...')
+                            .card.card-body#recCARD9
+                                h1.card-title#recCARD9title Number 9 Song
+                                p.card-artist#recCARD9artist Artist9
+                                img.img-fluid.on_bottom#recCARD9img(src='', alt='...')
+                            .card.card-body#recCARD10
+                                h1.card-title#recCARD10title Number 10 Song
+                                p.card-artist#recCARD10artist Artist10
+                                img.img-fluid.on_bottom#recCARD10img(src='', alt='...')
+                            .container-min-max
+            .container-min-max
 
-        // Projects
-        section#projects.projects-section.bg-light
+        // search
+
+        //need to make two search bars, have both inputs get grabbed by a new search function
+        section#search.search-section.text-center
             .container.px-4.px-lg-5
-                // Featured Project Row
-                .row.gx-0.mb-4.mb-lg-5.align-items-center
-                    .col-xl-8.col-lg-7
-                        img.img-fluid.mb-3.mb-lg-0(src='images/bg-masthead.jpg', alt='...')
-                    .col-xl-4.col-lg-5
-                        .featured-text.text-center.text-lg-left
-                            h4 Shoreline
-                            p.text-black-50.mb-0
-                                | Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8
+                        h1.text-white.mb-4.spacer-bot#song_search_text Search for a Song
+                        h2.text-white-50.mx-auto.mt-2.mb-5 Enter a song name and artist, then click Search! <br> Please give the dropdown time to load, 
+                                                            | everything is running on Azure free tier!
+                        p.text-white
+                        .input-group.mb-3
+                            .btn-group.spacer-right
+                                button.btn.btn-secondary#testbtn(type='button' aria-expanded='false' onclick='searchByName()')
+                                    | Search
+                            input.form-control#name-search-text(type='text' placeholder='Input Song Name..')
+                            input.form-control#artist-search-text(type='text' placeholder='Input Artist Name..')
+            .container-fade.openonclick#searchcards
+                .container-rec
+                    .container-fluid.py-2
+                        .container-cards.flex-nowrap.flex-row.d-flex
+                            .card.card-body#searchCARD1
+                                h1.card-title#searchCARD1title Number 1 Song
+                                p.card-artist#searchCARD1artist Artist1
+                                img.img-fluid.on_bottom#searchCARD1img(src='', alt='...')
+                            .card.card-body#searchCARD2
+                                h1.card-title#searchCARD2title Number 2 Song
+                                p.card-artist#searchCARD2artist Artist2
+                                img.img-fluid.on_bottom#searchCARD2img(src='', alt='...')
+                            .card.card-body#searchCARD3
+                                h1.card-title#searchCARD3title Number 3 Song
+                                p.card-artist#searchCARD3artist Artist3
+                                img.img-fluid.on_bottom#searchCARD3img(src='', alt='...')
+                            .card.card-body#searchCARD4
+                                h1.card-title#searchCARD4title Number 4 Song
+                                p.card-artist#searchCARD4artist Artist4
+                                img.img-fluid.on_bottom#searchCARD4img(src='', alt='...')
+                            .card.card-body#searchCARD5
+                                h1.card-title#searchCARD5title Number 5 Song
+                                p.card-artist#searchCARD5artist Artist5
+                                img.img-fluid.on_bottom#searchCARD5img(src='', alt='...')
+                            .card.card-body#searchCARD6
+                                h1.card-title#searchCARD6title Number 6 Song
+                                p.card-artist#searchCARD6artist Artist6
+                                img.img-fluid.on_bottom#searchCARD6img(src='', alt='...')
+                            .card.card-body#searchCARD7
+                                h1.card-title#searchCARD7title Number 7 Song
+                                p.card-artist#searchCARD7artist Artist7
+                                img.img-fluid.on_bottom#searchCARD7img(src='', alt='...')
+                            .card.card-body#searchCARD8
+                                h1.card-title#searchCARD8title Number 8 Song
+                                p.card-artist#searchCARD8artist Artist8
+                                img.img-fluid.on_bottom#searchCARD8img(src='', alt='...')
+                            .card.card-body#searchCARD9
+                                h1.card-title#searchCARD9title Number 9 Song
+                                p.card-artist#searchCARD9artist Artist9
+                                img.img-fluid.on_bottom#searchCARD9img(src='', alt='...')
+                            .card.card-body#searchCARD10
+                                h1.card-title#searchCARD10title Number 10 Song
+                                p.card-artist#searchCARD10artist Artist10
+                                img.img-fluid.on_bottom#searchCARD10img(src='', alt='...')
+                            .container-min-max
+            .container-min-max
+            .container.px-4.px-lg-5
+                img.img-fluid(src='images/iphone.png', alt='...')
+
+        // About Me
+        section#aboutme.aboutme-section.bg-light
+            .container.px-4.px-lg-5
                 // Project One Row
                 .row.gx-0.mb-5.mb-lg-0.justify-content-center
                     .col-lg-6
@@ -137,9 +254,10 @@ html(lang='en')
                         .bg-black.text-center.h-100.project
                             .d-flex.h-100
                                 .project-text.w-100.my-auto.text-center.text-lg-left
-                                    h4.text-white Misty
+                                    h4.text-white Thank you for visiting!
                                     p.mb-0.text-white-50
-                                        | An example of where you can put an image of a project, or anything else, along with a description.
+                                        | This was a fun passion project to work on in my free time! <br><br>
+                                        | Please visit my personal portfolio available at the bottom of the page or at: itsnotmik.github.io
                 // Project Two Row
                 .row.gx-0.justify-content-center
                     .col-lg-6
@@ -148,77 +266,31 @@ html(lang='en')
                         .bg-black.text-center.h-100.project
                             .d-flex.h-100
                                 .project-text.w-100.my-auto.text-center.text-lg-right
-                                    h4.text-white Mountains
+                                    h4.text-white Coding
                                     p.mb-0.text-white-50
-                                        | Another example of a project with its respective description. These sections work well responsively as well!
+                                        | The website is split into 4 different applications: <br> Node.js Website, Python Music Recommendation script,
+                                        | Python Billboard Top 100 Scraper script, and a Python Database Query for the search bar!
+                                        | <br><br>All code is available on my github, available in the navbar or at the bottom of the page!
 
-        // Signup
-        section#signup.signup-section
+        // filler space
+        section#bottonspace.bottomspace-section
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5
                     .col-md-10.col-lg-8.mx-auto.text-center
-                        i.far.fa-paper-plane.fa-2x.mb-2.text-white
-                        h2.text-white.mb-5 Subscribe to receive updates!
-
-                        // * * * * * * * * * * * * * * *
-                        // * * SB Forms Contact Form * *
-                        // * * * * * * * * * * * * * * *
-
-                        // This form is pre-integrated with SB Forms.
-                        // To make this form functional, sign up at
-                        // https://startbootstrap.com/solution/contact-forms
-                        // to get an API token!
                         
-                        form#contactForm.form-signup(data-sb-form-api-token='API_TOKEN')
-
-                            // Email address input
-
-                            .row.input-group-newsletter
-                                .col
-                                    input#emailAddress.form-control(
-                                        type='email',
-                                        placeholder='Enter email address...',
-                                        aria-label='Enter email address...',
-                                        data-sb-validations='required,email'
-                                    )
-                                .col-auto
-                                    button#submitButton.btn.btn-primary.disabled(type='submit') Notify Me!
-                            .invalid-feedback.mt-2(data-sb-feedback='emailAddress:required')
-                                | An email is required.
-                            .invalid-feedback.mt-2(data-sb-feedback='emailAddress:email')
-                                | Email is not valid.
-
-                            // Submit success message
-                            //
-                            // This is what your users will see when the form
-                            // has successfully submitted
-
-                            #submitSuccessMessage.d-none
-                                .text-center.mb-3.mt-2.text-white
-                                    .fw-bolder Form submission successful!
-                                    | To activate this form, sign up at
-                                    br
-                                    a(href='https://startbootstrap.com/solution/contact-forms') https://startbootstrap.com/solution/contact-forms
-
-                            // Submit error message
-                            //
-                            // This is what your users will see when there is
-                            // an error submitting the form
-
-                            #submitErrorMessage.d-none
-                                .text-center.text-danger.mb-3.mt-2 Error sending message!
 
         // Contact
-        section.contact-section.bg-black
+        section#contact.contact-section.bg-black
             .container.px-4.px-lg-5
                 .row.gx-4.gx-lg-5
                     .col-md-4.mb-3.mb-md-0
                         .card.py-4.h-100
                             .card-body.text-center
-                                i.fas.fa-map-marked-alt.text-primary.mb-2
-                                h4.text-uppercase.m-0 Address
+                                i.fab.fa-github.text-primary.mb-2
+                                h4.text-uppercase.m-0 Github
                                 hr.my-4.mx-auto
-                                .small.text-black-50 4923 Market Street, Orlando FL
+                                .small.text-black-50 
+                                    a(href='https://github.com/itsnotmik') github.com/itsnotmik
                     .col-md-4.mb-3.mb-md-0
                         .card.py-4.h-100
                             .card-body.text-center
@@ -226,36 +298,28 @@ html(lang='en')
                                 h4.text-uppercase.m-0 Email
                                 hr.my-4.mx-auto
                                 .small.text-black-50
-                                    a(href='#!') hello@yourdomain.com
+                                    a(href='mailto:mclement.busi@gmail.com') mclement.busi@gmail.com
                     .col-md-4.mb-3.mb-md-0
                         .card.py-4.h-100
                             .card-body.text-center
-                                i.fas.fa-mobile-alt.text-primary.mb-2
-                                h4.text-uppercase.m-0 Phone
+                                i.fas.fa-id-card.text-primary.mb-2
+                                h4.text-uppercase.m-0 Portfolio
                                 hr.my-4.mx-auto
-                                .small.text-black-50 +1 (555) 902-8832
+                                .small.text-black-50
+                                    a(href='https://itsnotmik.github.io') itsnotmik.github.io
                 .social.d-flex.justify-content-center
-                    a.mx-2(href='#!')
-                        i.fab.fa-twitter
-                    a.mx-2(href='#!')
-                        i.fab.fa-facebook-f
-                    a.mx-2(href='#!')
+                    a.mx-2(href='https://github.com/itsnotmik')
                         i.fab.fa-github
 
         // Footer
         footer.footer.bg-black.small.text-center.text-white-50
             .container.px-4.px-lg-5
-                | Copyright &copy; Your Website 2023
+                | Copyright &copy; 2023
 
         // Bootstrap core JS
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js')
 
         // Core theme JS
         script(src='javascripts/scripts.js')
-
-        // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-        // * *                               SB Forms JS                               * *
-        // * * Activate your form at https://startbootstrap.com/solution/contact-forms * *
-        // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-        script(src='https://cdn.startbootstrap.com/sb-forms-latest.js')
+        include search
+        include artistsearch

@@ -6,6 +6,11 @@
     min-height: 3.5rem;
     background-color: $white;
 
+    .github-sizing {
+        object-fit: fill;
+        color: #000000;
+    }
+
     .navbar-toggler {
         font-size: 80%;
         padding: 0.75rem;

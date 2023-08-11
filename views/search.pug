@@ -1,0 +1,95 @@
+script.  
+    function debounce(cb, interval, immediate) {
+        var timeout;
+
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+            timeout = null;
+            if (!immediate) cb.apply(context, args);
+            };          
+
+            var callNow = immediate && !timeout;
+
+            clearTimeout(timeout);
+            timeout = setTimeout(later, interval);
+
+            if (callNow) cb.apply(context, args);
+        };
+    };
+
+    function keyPressCallback() {
+        const container = document.getElementById('results-card-container');
+        const template = document.querySelector("[data-results]");
+        var input = document.getElementById('song-search-text');
+
+        container.style.display = 'none';
+
+        while (container.firstChild) {
+            container.removeChild(container.lastChild);
+        }
+        
+        fetch('https://livesearch.azurewebsites.net/search/' + input.value).then(
+            resp => resp.json() // this returns a promise
+        ).then(repos => {
+            for (const repo of repos) {
+                const card = template.content.cloneNode(true).children[0];
+                artist = repo.artists.replace(/[\[\]\']/ig, "");
+                console.log(artist);
+                card.textContent = repo.name + ' by ' + artist;
+                card.dataset.id = repo.id;
+                card.addEventListener('click', function() { songSearch(repo.id, card.textContent); });
+                container.append(card);
+            }
+            document.getElementById('song_rec_text').innerHTML = "Song Recommendations";
+            if (container.firstChild) {
+                container.style.display = 'block';
+            }
+        }).catch(ex => {
+            document.getElementById('song_rec_text').innerHTML = "Failed to load Song Recommendations";
+            console.log(ex);
+        })
+    }
+
+    function songSearch(songID, songFillIn) {
+        event.preventDefault();
+        const container = document.getElementById('results-card-container');
+        const reccontainer = document.getElementById('reccards');
+        const searchbar = document.getElementById('song-search-text');
+        var counter = 1;
+
+        searchbar.value = songFillIn;
+
+        fetch('http://mikmusicapi.azurewebsites.net/api/song/id/' + songID).then(
+            resp => resp.json()
+        ).then(repos => {
+            for (const repo of repos) {
+                //for each song populate the cards fill song name into box and close dropdown
+                container.style.display = 'none';
+                reccontainer.style.display = 'block';
+
+                recartists = repo.artists.replace(/[^a-z,0-9 ]/ig, "");
+                recartistsshort = recartists.substring(0, 12);
+                if (recartistsshort != recartists){
+                    recartists = recartistsshort + '...';                               
+                }
+
+                recname = repo.name.substring(0, 30);
+                if (recname != repo.name){
+                    recname = recname + '...';
+                }
+
+                document.getElementById('recCARD'+counter+'title').innerHTML = recname;
+                document.getElementById('recCARD'+counter+'artist').innerHTML = 'by ' + recartists;
+                document.getElementById('recCARD'+counter+'img').src = repo['album art'];
+                console.log(counter);
+                counter++;
+            }
+        }).catch(ex => {
+            console.log(ex);
+        }) 
+    }
+
+    document.getElementById('song-search-text').onkeypress = debounce(keyPressCallback, 1000);
+
+    //make card a btn with no details, when pressed, do function call with ID stored in html. That ID will trigger cards to open and rec system to run!

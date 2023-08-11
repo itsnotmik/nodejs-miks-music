@@ -12146,6 +12146,11 @@ body {
   min-height: 3.5rem;
   background-color: #fff;
 }
+#mainNav .github-sizing {
+  -o-object-fit: fill;
+     object-fit: fill;
+  color: #000000;
+}
 #mainNav .navbar-toggler {
   font-size: 80%;
   padding: 0.75rem;
@@ -12273,38 +12278,153 @@ body {
     font-size: 1.25rem;
   }
 }
+.masthead .spacer-right {
+  margin-right: 5px;
+}
 
-.about-section {
+.search-section {
   padding-top: 10rem;
   background: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.9) 75%, rgba(0, 0, 0, 0.8) 100%);
 }
-.about-section p {
-  margin-bottom: 5rem;
+.search-section .container-fade {
+  -webkit-mask: linear-gradient(to left, transparent 1%, black 3%, black 97%, transparent 99%);
+  mask: linear-gradient(to left, transparent 1%, black 3%, black 97%, transparent 99%);
+}
+.search-section .container-pad {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.search-section .container-rec {
+  overflow-x: scroll;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.search-section .container-rec::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+  padding-top: 2px;
+}
+.search-section .container-rec::-webkit-scrollbar-thumb {
+  background-color: rgba(116, 116, 116, 0.2);
+}
+.search-section .container-rec::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.search-section .container-rec::-webkit-scrollbar-button:horizontal:start:increment,
+.search-section .container-rec::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none;
+}
+.search-section .container-cards {
+  padding-left: 35px;
+}
+.search-section .card-body {
+  min-height: 550px;
+  min-width: 400px;
+  margin-right: 10px;
+  margin-left: 4px;
+  background: linear-gradient(to bottom, black 40%, rgba(34, 34, 34, 0.9) 75%, rgba(0, 0, 0, 0.8) 100%);
+  position: relative;
+}
+.search-section .card-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+.search-section .card-artist {
+  font-size: 30px;
+  padding-top: 10px;
+}
+.search-section h1, .search-section .h1 {
+  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 2.5rem;
+  letter-spacing: 0.2rem;
+  background: linear-gradient(white, rgba(255, 255, 255, 0.7));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-decoration: underline rgba(255, 255, 255, 0.3294117647);
+          text-decoration: underline rgba(255, 255, 255, 0.3294117647);
+}
+.search-section h2, .search-section .h2 {
+  max-width: 50rem;
+  font-size: 1.25rem;
+}
+.search-section p {
+  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.1rem;
+  background: linear-gradient(white, rgba(255, 255, 255, 0.3));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+  padding-bottom: 5px;
+}
+.search-section .results-text {
+  font-size: 1rem;
+  text-align: start;
+  margin-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.search-section .on_bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-right: -50%;
+  transform: translateX(-50%);
+  width: 380px;
+  height: 380px;
+  padding-bottom: 10px;
+}
+.search-section .container-min-max {
+  min-width: 40px;
+  min-height: 40px;
+}
+.search-section .spacer-bot {
+  padding-bottom: 15px;
+}
+.search-section .spacer-right {
+  padding-right: 5px;
+}
+.search-section .openonclick {
+  display: none;
+}
+.search-section .results-spacing {
+  margin-left: 135px;
+}
+.search-section .card-results {
+  outline: none;
 }
 
-.projects-section {
+.aboutme-section {
   padding: 10rem 0;
 }
-.projects-section .featured-text {
+.aboutme-section .featured-text {
   padding: 2rem;
 }
 @media (min-width: 992px) {
-  .projects-section .featured-text {
+  .aboutme-section .featured-text {
     padding: 0 0 0 2rem;
     border-left: 0.5rem solid #64a19d;
   }
 }
-.projects-section .project-text {
+.aboutme-section .project-text {
   padding: 3rem;
   font-size: 90%;
 }
 @media (min-width: 992px) {
-  .projects-section .project-text {
+  .aboutme-section .project-text {
     padding: 5rem;
   }
 }
 
-.signup-section {
+.bottomspace-section {
   padding: 10rem 0;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000 100%), url("/images/bg-signup.jpg");
   background-position: center;
@@ -12312,7 +12432,7 @@ body {
   background-attachment: scroll;
   background-size: cover;
 }
-.signup-section .form-signup input {
+.bottomspace-section .form-signup input {
   box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
   padding: 1.25rem 2rem;
   height: auto;
@@ -12425,37 +12545,28 @@ body {
   font-size: 2.5rem;
   font-weight: bold;
   line-height: 2.5rem;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.2rem;
   background: linear-gradient(white, rgba(255, 255, 255, 0.7));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
           background-clip: text;
+  -webkit-text-decoration: underline rgba(255, 255, 255, 0.3294117647);
+          text-decoration: underline rgba(255, 255, 255, 0.3294117647);
+}
+.bb100-section h2, .bb100-section .h2 {
+  max-width: 50rem;
+  font-size: 1.25rem;
 }
 .bb100-section p {
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1.5rem;
-  line-height: 2rem;
-  letter-spacing: 0.3rem;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.1rem;
   background: linear-gradient(white, rgba(255, 255, 255, 0.3));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
           background-clip: text;
-}
-.bb100-section .in_middle {
-  position: absolute;
-  bottom: 75px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translateX(-50%);
-  width: 380px;
-  height: 380px;
-}
-.bb100-section .near_bottom {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translateX(-50%);
+  padding-bottom: 5px;
 }
 .bb100-section .on_bottom {
   position: absolute;
@@ -12470,4 +12581,127 @@ body {
 .bb100-section .container-min-max {
   min-width: 40px;
   min-height: none;
+}
+.bb100-section .spacer-bot {
+  padding-bottom: 15px;
+}
+
+.recommendations-section {
+  padding-top: 10rem;
+  background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.9) 75%, rgba(0, 0, 0, 0.8) 100%);
+}
+.recommendations-section .container-fade {
+  -webkit-mask: linear-gradient(to left, transparent 1%, black 3%, black 97%, transparent 99%);
+  mask: linear-gradient(to left, transparent 1%, black 3%, black 97%, transparent 99%);
+}
+.recommendations-section .container-pad {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.recommendations-section .container-rec {
+  overflow-x: scroll;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.recommendations-section .container-rec::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+  padding-top: 2px;
+}
+.recommendations-section .container-rec::-webkit-scrollbar-thumb {
+  background-color: rgba(116, 116, 116, 0.2);
+}
+.recommendations-section .container-rec::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.recommendations-section .container-rec::-webkit-scrollbar-button:horizontal:start:increment,
+.recommendations-section .container-rec::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none;
+}
+.recommendations-section .container-cards {
+  padding-left: 35px;
+}
+.recommendations-section .card-body {
+  min-height: 550px;
+  min-width: 400px;
+  margin-right: 10px;
+  margin-left: 4px;
+  background: linear-gradient(to bottom, black 40%, rgba(34, 34, 34, 0.9) 75%, rgba(0, 0, 0, 0.8) 100%);
+  position: relative;
+}
+.recommendations-section .card-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+.recommendations-section .card-artist {
+  font-size: 30px;
+  padding-top: 10px;
+}
+.recommendations-section h1, .recommendations-section .h1 {
+  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 2.5rem;
+  letter-spacing: 0.2rem;
+  background: linear-gradient(white, rgba(255, 255, 255, 0.7));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-decoration: underline rgba(255, 255, 255, 0.3294117647);
+          text-decoration: underline rgba(255, 255, 255, 0.3294117647);
+}
+.recommendations-section h2, .recommendations-section .h2 {
+  max-width: 50rem;
+  font-size: 1.25rem;
+}
+.recommendations-section p {
+  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.1rem;
+  background: linear-gradient(white, rgba(255, 255, 255, 0.3));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+  padding-bottom: 5px;
+}
+.recommendations-section .results-text {
+  font-size: 1rem;
+  text-align: start;
+  margin-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.recommendations-section .on_bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-right: -50%;
+  transform: translateX(-50%);
+  width: 380px;
+  height: 380px;
+  padding-bottom: 10px;
+}
+.recommendations-section .container-min-max {
+  min-width: 40px;
+  min-height: 40px;
+}
+.recommendations-section .spacer-bot {
+  padding-bottom: 15px;
+}
+.recommendations-section .spacer-right {
+  padding-right: 5px;
+}
+.recommendations-section .openonclick {
+  display: none;
+}
+.recommendations-section .results-spacing {
+  margin-left: 135px;
+}
+.recommendations-section .card-results {
+  outline: none;
 }
